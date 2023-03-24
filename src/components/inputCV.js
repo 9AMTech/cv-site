@@ -3,7 +3,7 @@ import InputCSS from '../css/inputCV.module.css';
 export default function InputCV(props) {
 	return (
 		<section className="input-cv">
-			
+
 			<Introduction onIntroductionChange={props.onIntroductionChange} />
 
 			<Summary onSummaryChange={props.onSummaryChange} />
@@ -41,10 +41,10 @@ export default function InputCV(props) {
 			}
 			{/* These buttons will conditionally render, the remove button will disapear when there's 
 			only 1 work history. The add button will disapear when there is 3 work histories */}
-			{props.counters.workHistory < 3 ? <Button onButtonClick={props.onAddWorkButtonClick} buttonText={'Add Work History'}/> : null}
-			{props.counters.workHistory > 1 ? <Button onButtonClick={props.onRemoveWorkButtonClick} buttonText={'Remove Work History'}/> : null}
-			
-			<EducationHistory onEducationHistoryChange={props.onEducationHistoryChange} index={0}/>
+			{props.counters.workHistory < 3 ? <Button onButtonClick={props.onAddWorkButtonClick} buttonText={'Add Work History'} /> : null}
+			{props.counters.workHistory > 1 ? <Button onButtonClick={props.onRemoveWorkButtonClick} buttonText={'Remove Work History'} /> : null}
+
+			<EducationHistory onEducationHistoryChange={props.onEducationHistoryChange} index={0} />
 			{props.displayComponent.educationHistory1
 				? <EducationHistory
 					onEducationHistoryChange={props.onEducationHistoryChange}
@@ -52,8 +52,10 @@ export default function InputCV(props) {
 				: null
 			}
 			{/* These buttons work the same as the above, they will conditionally render when the counter */}
-			{props.counters.educationHistory < 2 ? <Button onButtonClick={props.onAddEducationButtonClick} buttonText={'Add Education History'}/> : null}
-			{props.counters.educationHistory > 1 ? <Button onButtonClick={props.onRemoveEducationButtonClick} buttonText={'Remove Education History'}/> : null}
+			{props.counters.educationHistory < 2 ? <Button onButtonClick={props.onAddEducationButtonClick} buttonText={'Add Education History'} /> : null}
+			{props.counters.educationHistory > 1 ? <Button onButtonClick={props.onRemoveEducationButtonClick} buttonText={'Remove Education History'} /> : null}
+			<Button buttonText={'Sample CV'} />
+			<Button buttonText={'Print CV'} onClick={props.onPrintClick}/>
 		</section>
 	)
 }

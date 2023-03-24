@@ -1,15 +1,17 @@
+import { forwardRef } from 'react';
 import OutputCSS from '../css/outputCV.module.css';
 
-export default function OutputCV(props) {
+
+const OutputCV = forwardRef((props, ref) => {
 	return (
-		<section className="output-cv">
+		<section className="output-cv" ref={ref}>
 			<Introduction introduction={props.introduction} />
 			<Summary summary={props.summary} />
 			<WorkHistory workHistory={props.workHistory} displayComponent={props.displayComponent} />
 			<EducationHistory educationHistory={props.educationHistory} displayComponent={props.displayComponent} />
 		</section>
 	)
-}
+})
 
 function Introduction({ introduction }) {
 	return (
@@ -87,3 +89,5 @@ function EducationHistory({ educationHistory, displayComponent }) {
 
 	)
 }
+
+export default OutputCV;

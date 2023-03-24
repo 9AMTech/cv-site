@@ -1,10 +1,15 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import InputCV from './components/inputCV.js'
 import OutputCV from './components/outputCV.js'
 
 export default function App() {
-	// States
+
+	// ===================================================
+	// ==================== States =======================
+	// ===================================================
+
 	const [introduction, setIntroduction] = useState({
 		firstName: '',
 		lastName: '',
@@ -71,7 +76,11 @@ export default function App() {
 		educationHistory: 1,
 	})
 
-	// Helper Functions
+	// ===================================================
+	// ============== Helper Functions ===================
+	// ===================================================
+
+
 	const onIntroductionChange = (event, toUpdate) => {
 		let newIntroduction = Object.assign({}, introduction);
 
@@ -203,6 +212,18 @@ export default function App() {
 		setDisplayComponent(newDisplayComponent);
 		setCounters(newCounter);
 	}
+	
+	// ===========================================================
+	// Functions for Printing the OutputCV from the InputCV Button
+	// ===========================================================
+	
+	const componentRef = useRef();
+
+	const handlePrint = useReactToPrint({
+		content: () => componentRef.current,
+		documentTitle: introduction.firstName + ' ' + introduction.lastName + ' - Resume',
+	})
+
 
 	return (
 		<div className="App">
@@ -228,6 +249,8 @@ export default function App() {
 				summary={summary}
 				setSummary={setSummary}
 				onSummaryChange={onSummaryChange}
+
+				onPrintClick={handlePrint}
 			/>
 			<OutputCV
 				displayComponent={displayComponent}
@@ -235,6 +258,7 @@ export default function App() {
 				summary={summary}
 				workHistory={workHistory}
 				educationHistory={educationHistory}
+				ref={componentRef}
 			/>
 		</div>
 	);
