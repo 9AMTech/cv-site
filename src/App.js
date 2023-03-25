@@ -1,29 +1,36 @@
 import './App.css';
-import { useState } from 'react';
-import InputCV from './components/inputCV.js'
-import OutputCV from './components/outputCV.js'
+import { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import InputCV from './components/InputCV/InputCV'
+import OutputCV from './components/OutputCV/OutputCV'
+import Button from './components/Button'
 
 export default function App() {
-	// States
-	const [introduction, setIntroduction] = useState({
+
+	// ===================================================
+	// ==================== States =======================
+	// ===================================================
+
+	const initialIntroduction = {
 		firstName: '',
 		lastName: '',
 		phoneNumber: '',
 		email: '',
 		linkedIn: '',
 		website: '',
-	})
+	}
 
-	const [summary, setSummary] = useState('');
+	const initialSummary = '';
 
-	const [workHistory, setWorkHistory] = useState([
+	const initialWorkHistory = [
 		{
 			id: 0,
 			jobName: '',
 			jobPosition: '',
 			startDate: '',
 			endDate: '',
-			jobDescription: ''
+			jobDescription: '',
+			currentJob: false
 		},
 		{
 			id: 1,
@@ -31,7 +38,8 @@ export default function App() {
 			jobPosition: '',
 			startDate: '',
 			endDate: '',
-			jobDescription: ''
+			jobDescription: '',
+			currentJob: false
 		},
 		{
 			id: 2,
@@ -39,11 +47,12 @@ export default function App() {
 			jobPosition: '',
 			startDate: '',
 			endDate: '',
-			jobDescription: ''
+			jobDescription: '',
+			currentJob: false
 		},
-	]);
+	];
 
-	const [educationHistory, setEducationHistory] = useState([
+	const initialEducationHistory = [
 		{
 			id: 0,
 			educationName: '',
@@ -58,20 +67,36 @@ export default function App() {
 			dateAcquired: '',
 			educationDescription: ''
 		}
-	]);
+	]
 
-	const [displayComponent, setDisplayComponent] = useState([{
+	const initialDisplayComponent = [{
 		workHistory1: false,
 		workHistory2: false,
 		educationHistory1: false
-	}])
+	}]
 
-	const [counters, setCounters] = useState({
+	const initialCounters = {
 		workHistory: 1,
 		educationHistory: 1,
-	})
+	}
 
-	// Helper Functions
+	const [introduction, setIntroduction] = useState(initialIntroduction)
+
+	const [summary, setSummary] = useState(initialSummary);
+
+	const [workHistory, setWorkHistory] = useState(initialWorkHistory);
+
+	const [educationHistory, setEducationHistory] = useState(initialEducationHistory);
+
+	const [displayComponent, setDisplayComponent] = useState(initialDisplayComponent);
+
+	const [counters, setCounters] = useState(initialCounters)
+
+	// ===================================================
+	// ============== Helper Functions ===================
+	// ===================================================
+
+
 	const onIntroductionChange = (event, toUpdate) => {
 		let newIntroduction = Object.assign({}, introduction);
 
@@ -123,6 +148,9 @@ export default function App() {
 			case 'jobDescription':
 				newWorkHistory[index].jobDescription = event.target.value;
 				break;
+			case 'currentJob':
+				newWorkHistory[index].currentJob = event.target.checked;
+				break;
 			default:
 				throw new Error("There's something wrong with onWorkHistoryChange()");
 		}
@@ -150,15 +178,44 @@ export default function App() {
 		setEducationHistory(newEducationHistory);
 	}
 
+	// ===========================================================
+	//    					Function for Formatting Data
+	// ===========================================================
+
+	const formatDate = (date) => {
+		if(date === '') return;
+		const dateParts = date.split('-');
+		return dateParts[1] + '/' + dateParts[0];
+	}
+
+	// Cool Phone Number Format Function I found online
+	let formatPhoneNumber = (str) => {
+		//Filter only numbers from the input
+		let cleaned = ('' + str).replace(/\D/g, '');
+		
+		//Check if the input is of correct length
+		let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+	
+		if (match) {
+			return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+		};
+	
+		return null
+	};
+
+	// ===========================================================
+	//    Functions for Adding and Removing Sections of the CV
+	// ===========================================================
+
 	const onAddWorkButtonClick = () => {
 		let newDisplayComponent = Object.assign({}, displayComponent);
 		let newCounter = Object.assign({}, counters);
 
 		newCounter.workHistory++;
-		if(newCounter.workHistory === 2) {
+		if (newCounter.workHistory === 2) {
 			newDisplayComponent.workHistory1 = true;
 		}
-		else if(newCounter.workHistory === 3) {
+		else if (newCounter.workHistory === 3) {
 			newDisplayComponent.workHistory2 = true;
 		}
 		setDisplayComponent(newDisplayComponent);
@@ -169,10 +226,10 @@ export default function App() {
 		let newDisplayComponent = Object.assign({}, displayComponent);
 		let newCounter = Object.assign({}, counters);
 
-		if(newCounter.workHistory === 2) {
+		if (newCounter.workHistory === 2) {
 			newDisplayComponent.workHistory1 = false;
 		}
-		else if(newCounter.workHistory === 3) {
+		else if (newCounter.workHistory === 3) {
 			newDisplayComponent.workHistory2 = false;
 		}
 		newCounter.workHistory--;
@@ -185,7 +242,7 @@ export default function App() {
 		let newCounter = Object.assign({}, counters);
 
 		newCounter.educationHistory++;
-		if(newCounter.educationHistory === 2) {
+		if (newCounter.educationHistory === 2) {
 			newDisplayComponent.educationHistory1 = true;
 		}
 		setDisplayComponent(newDisplayComponent);
@@ -196,7 +253,7 @@ export default function App() {
 		let newDisplayComponent = Object.assign({}, displayComponent);
 		let newCounter = Object.assign({}, counters);
 
-		if(newCounter.educationHistory === 2) {
+		if (newCounter.educationHistory === 2) {
 			newDisplayComponent.educationHistory1 = false;
 		}
 		newCounter.educationHistory--;
@@ -204,37 +261,152 @@ export default function App() {
 		setCounters(newCounter);
 	}
 
+	// ===========================================================
+	//           Functions for Resetting the Form Info
+	// ===========================================================
+
+	const resetForm = () => {
+		let newIntroduction = Object.assign({}, initialIntroduction);
+		let newSummary = initialSummary;
+		let newWorkHistory = Object.assign({}, initialWorkHistory);
+		let newEducationHistory = Object.assign({}, initialEducationHistory);
+		let newDisplayComponent = Object.assign({}, initialDisplayComponent);
+		let newCounters = Object.assign({}, initialCounters);
+		setIntroduction(newIntroduction);
+		setSummary(newSummary);
+		setWorkHistory(newWorkHistory);
+		setEducationHistory(newEducationHistory);
+		setDisplayComponent(newDisplayComponent);
+		setCounters(newCounters);
+	}
+
+
+	// ===========================================================
+	//           Functions for Generating a Sample CV
+	// ===========================================================
+
+	const generateSampleCV = () => {
+		resetForm();
+		setIntroduction({
+			firstName: 'Kyo',
+			lastName: 'Kusanagi',
+			phoneNumber: '555-555-5555',
+			email: 'kkusanagi@kof.com',
+			linkedIn: 'https://www.linkedin.com/in/kkusanagi/',
+			website: 'https://www.kof.com',
+		})
+		setSummary('Aspiring teacher, tutor, software developer looking to make it in the field!')
+		setWorkHistory([
+			{
+				id: 0,
+				jobName: 'Unmemployed',
+				jobPosition: 'Martial Artist',
+				startDate: '2020-01',
+				endDate: '2023-03',
+				jobDescription: 'I fight people!'
+			},
+			{
+				id: 1,
+				jobName: 'Florida Man Mall',
+				jobPosition: 'Mall Cop',
+				startDate: '2017-06',
+				endDate: '2019-12',
+				jobDescription: 'I stop kids from skating on the stairs.'
+			},
+			{
+				id: 2,
+				jobName: 'Generic Grocery Store Name',
+				jobPosition: 'Bagger',
+				startDate: '2010-09',
+				endDate: '2015-05',
+				jobDescription: 'I fight the urges of eating customers groceries while bagging them.'
+			},
+		]);
+		setEducationHistory([
+			{
+				id: 0,
+				educationName: 'Community College',
+				certificateName: 'Associates Degree',
+				dateAcquired: '2023-03',
+				educationDescription: "The martial arts didn't work out so I had to go back to school."
+			},
+			{
+				id: 1,
+				educationName: "Monk's Temple",
+				certificateName: 'These hands',
+				dateAcquired: '2005-03',
+				educationDescription: 'I trained in the moutains for these hands.'
+			}
+		]);
+		setDisplayComponent({
+				workHistory1: true,
+				workHistory2: true,
+				educationHistory1: true
+			}
+		);
+
+		setCounters({
+			workHistory: 3,
+			educationHistory: 2,
+		})
+	}
+
+	// ===========================================================
+	//          Functions for Printing the OutputCV
+	// ===========================================================
+
+	const componentRef = useRef();
+
+	const handlePrint = useReactToPrint({
+		content: () => componentRef.current,
+		onBeforePrint: () => console.log("Printing!!!"),
+		documentTitle: introduction.firstName + ' ' + introduction.lastName + ' - Resume',
+	})
+
+
 	return (
 		<div className="App">
 			<Header />
 			<InputCV
 				displayComponent={displayComponent}
 				setDisplayComponent={setDisplayComponent}
-				
+
 				counters={counters}
 				setCounters={setCounters}
 
+				introduction={introduction}
 				setIntroduction={setIntroduction}
 				onIntroductionChange={onIntroductionChange}
-				
+
+				workHistory={workHistory}
 				onWorkHistoryChange={onWorkHistoryChange}
 				onAddWorkButtonClick={onAddWorkButtonClick}
 				onRemoveWorkButtonClick={onRemoveWorkButtonClick}
-				
+
+				educationHistory={educationHistory}
 				onEducationHistoryChange={onEducationHistoryChange}
 				onAddEducationButtonClick={onAddEducationButtonClick}
 				onRemoveEducationButtonClick={onRemoveEducationButtonClick}
-				
+
 				summary={summary}
 				setSummary={setSummary}
 				onSummaryChange={onSummaryChange}
+
 			/>
+
+			<Button onButtonClick={generateSampleCV} buttonText={'Sample CV'} />
+			<Button onButtonClick={resetForm} buttonText={'Reset CV'} />
+			<Button onButtonClick={handlePrint} buttonText={'Print CV'} />
+
 			<OutputCV
+				ref={componentRef}
 				displayComponent={displayComponent}
 				introduction={introduction}
 				summary={summary}
 				workHistory={workHistory}
 				educationHistory={educationHistory}
+				formatDate={formatDate}
+				formatPhoneNumber={formatPhoneNumber}
 			/>
 		</div>
 	);
