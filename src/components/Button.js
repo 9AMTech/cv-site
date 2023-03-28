@@ -1,5 +1,5 @@
-export default function Button({ onButtonClick, buttonText }) {
+export default function Button({ onButtonClick, buttonText, classedAs }) {
 	return (
-		<button onClick={onButtonClick}>{buttonText}</button>
+		<button className={classedAs} onClick={onButtonClick}>{buttonText}</button>
 	)
 }
