@@ -1,8 +1,10 @@
+import InputCSS from '../../css/inputCV.module.css';
+
 export default function Summary({ summary, onSummaryChange }) {
 	return (
-		<section>
-			<label htmlFor="summaryTextArea">Summary :</label>
-			<input type="textarea" name="summaryTextArea" value={summary} placeholder='Write a brief description about yourself here!' onChange={event => onSummaryChange(event)}></input>
+		<section id='summary' className={InputCSS.summary}>
+			<h1>Summary</h1>
+			<textarea value={summary} maxLength={120} placeholder='Write a brief description about yourself here!' onChange={event => onSummaryChange(event)}></textarea>
 		</section>
 	)
 }

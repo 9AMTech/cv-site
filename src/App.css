@@ -1,0 +1,151 @@
+@font-face {
+  font-family: base-font;
+  src: url("./css/fonts/rocko/RockoFLF.ttf");
+}
+
+@font-face {
+  font-family: base-font-bold;
+  src: url("./css/fonts/rocko/RockoUltraFLF.ttf");
+  font-weight: bold;
+}
+
+:root {
+  /* Color Pallete Variables */
+  /* Found this color palette online - Flat Palette #7 by Mark Bradbourne */
+  /* Don Juan */
+  --header-color: #594f4f;
+  /* Ocean Current */
+  --main-bg-color: #547980;
+  /* Snow Flurry */
+  --cv-background: #f6eeee;
+  /* Verdigris */
+  --baby-blue: #45ada8;
+  /* Dead 99 */
+  --greenish-blue: #9de0ad;
+	/* Softer Black Color */
+	--secondary-title-color: #232b2b;
+
+  /* Viewport Variables */
+  --tablet: 768px;
+  --laptop: 1024px;
+  --desktop: 1200px;
+
+  /* Font Variables */
+  font-family: base-font;
+  font-size: 16px;
+
+  /* Other base manipulations */
+  letter-spacing: 1px;
+  /* margin-top: 1em; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  margin: 0;
+}
+
+header {
+  background-color: var(--header-color);
+  /* width: 100vw; */
+}
+
+#title {
+  font-family: base-font-bold;
+  color: var(--cv-background);
+  font-size: 2rem;
+  letter-spacing: 3px;
+  height: 100%;
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 2% 0;
+}
+
+input {
+  font-family: base-font;
+  font-size: .9rem;
+  margin: 0 3% 16px;
+  padding: 0 auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 4% 8%;
+}
+
+h1 {
+	font-family: base-font-bold;
+  font-size: 1.5rem;
+  padding-left: 5%;
+}
+
+
+h2 {
+	margin-top: 0;
+	font-size: 1.2rem;
+}
+
+.toolbar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar-button {
+  background-color: var(--cv-background);
+  border-left: 0px;
+  margin: 0 2px 10px auto;
+  /* margin-bottom: 10px; */
+  padding: 10px;
+  border-radius: 0 29px 29px 0;
+  transition: padding-left ease-in-out 0.5s;
+}
+
+.toolbar img {
+  height: 40px;
+  width: 40px;
+}
+
+.print-button {
+  background-color: #98ff98;
+  margin-bottom: 50px;
+}
+
+.generate-sample-button {
+  background-color: #fac898;
+}
+
+.reset-button {
+  background-color: #ff493f;
+}
+
+textarea {
+  font-size: 1.15rem;
+  overflow: hidden;
+  resize: none;
+  display: flex;
+  margin: 0 auto 5%;
+  width: 85%;
+  min-height: 100px;
+  border-radius: 20px;
+  padding: 5%;
+}
+
+.preview-padding {
+	padding: 0 5%;
+}
+
+.place-center {
+	justify-content: center;
+	justify-self: center;
+}
+
+.toPrint {
+	border: 2px solid red;
+}
+/* Only adding this feature past mobile devices, on mobile it makes for a bad experience */
+/* .toolbar-button:hover {
+	padding-left: 200%;
+} */

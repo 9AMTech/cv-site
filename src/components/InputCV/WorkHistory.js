@@ -1,29 +1,34 @@
+import InputCSS from '../../css/inputCV.module.css';
+
 export default function WorkHistory({ workHistory, onWorkHistoryChange, index }) {
 	return (
-		<section>
-			<label htmlFor={'jobName' + index}>{"Company " + (index + 1) + ":"}</label>
-			<input type="text" name={'jobName' + index} value={workHistory[index].jobName} onChange={(event) => onWorkHistoryChange(event, 'jobName', index)} />
+				<>
+				{index === 0 ? <h1>Work History</h1> : null}
+				<h2>Company {index + 1} </h2>
 
-			<label htmlFor={"jobPosition" + index}>Position :</label>
-			<input type="text" name={"jobPosition" + index} value={workHistory[index].jobPosition} onChange={(event) => onWorkHistoryChange(event, 'jobPosition', index)} />
+				<section className={InputCSS.currentJobInfo}>
+				<label htmlFor={"currentJob" + index}>Current Job? :</label>
+				<input type="checkbox" name={"currentJob" + index} onChange={(event) => onWorkHistoryChange(event, 'currentJob', index)}></input>
+				</section>
 
-			<label htmlFor={"startingDate" + index}>Starting Date :</label>
-			<input type="month" name={"startingDate" + index} value={workHistory[index].startDate} onChange={(event) => onWorkHistoryChange(event, 'startDate', index)} />
+				<input type="text" name={'jobName' + index} placeholder='Job Name' value={workHistory[index].jobName} onChange={(event) => onWorkHistoryChange(event, 'jobName', index)} />
 
-			{workHistory[index].currentJob === true
-				? null
-				: <>
-					<label htmlFor={"endingDate" + index}>Ending Date :</label>
-					<input type="month" name={"endingDate" + index} value={workHistory[index].endDate} onChange={(event) => onWorkHistoryChange(event, 'endDate', index)} />
-				</>
-			}
+				<input type="text" name={"jobPosition" + index} placeholder='Job Position' value={workHistory[index].jobPosition} onChange={(event) => onWorkHistoryChange(event, 'jobPosition', index)} />
 
-			<label htmlFor={"currentJob" + index}>Current Job? :</label>
-			<input type="checkbox" name={"currentJob" + index} onChange={(event) => onWorkHistoryChange(event, 'currentJob', index)}></input>
+				<textarea name={"jobDescription" + index} placeholder='List job description or duties here' value={workHistory[index].jobDescription} onChange={(event) => onWorkHistoryChange(event, 'jobDescription', index)}></textarea>
+				
+				<section className={InputCSS.dates}>
+				<label htmlFor={"startingDate" + index}>Start Date :</label>
+				<input type="month" name={"startingDate" + index} value={workHistory[index].startDate} onChange={(event) => onWorkHistoryChange(event, 'startDate', index)} />
 
-			<label htmlFor={"jobDescription" + index}>Description :</label>
-			<input type="textarea" name={"jobDescription" + index} value={workHistory[index].jobDescription} onChange={(event) => onWorkHistoryChange(event, 'jobDescription', index)}></input>
-
-		</section>
+				{workHistory[index].currentJob === true
+					? null
+					: <>
+						<label htmlFor={"endingDate" + index}>End Date :</label>
+						<input type="month" name={"endingDate" + index} value={workHistory[index].endDate} onChange={(event) => onWorkHistoryChange(event, 'endDate', index)} />
+					</>
+				}
+				</section>
+					</>
 	)
 }

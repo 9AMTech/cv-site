@@ -1,0 +1,80 @@
+
+.inputCV {
+  background-color: var(--cv-background);
+  margin: 5% 4% 5% auto;
+  padding: 5% 0;
+  border-radius: 30px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputCV > * {
+  margin: 0 10% 5%;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.summary  {
+	margin-bottom: 10px;
+}
+
+.workHistory {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: repeat(5, auto);
+	margin-bottom: 10px;
+}
+
+.currentJobInfo {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 5%;
+}
+
+.dates {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-template-rows: repeat(2, auto);
+	align-items: baseline;
+	padding: 0 5%;
+}
+
+.educationHistory {
+	display: grid;
+}
+
+.certificateDateInfo {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-template-rows: auto;
+	align-items: baseline;
+	padding: 0 5%;
+}
+
+.fadedSeparator {
+  width: 80%;
+  height: 1px;
+  margin: 0px auto;
+  border-bottom: 1px solid gray;
+}
+
+.addRemoveButtons {
+	display: flex;
+	justify-content: space-evenly;
+	flex-basis: fit-content;
+}
+
+.addRemoveButtons button {
+	font-family: base-font;
+	width: 48%;
+  font-size: 1.05rem;
+  padding: 0 auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 1% 0%;
+}

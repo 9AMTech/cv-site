@@ -1,0 +1,155 @@
+@font-face {
+  font-family: base-font;
+  src: url("../css/fonts/rocko/RockoFLF.ttf");
+}
+
+@font-face {
+  font-family: base-font-bold;
+  src: url("../css/fonts/rocko/RockoUltraFLF.ttf");
+  font-weight: bold;
+}
+
+@media print {
+	.outputCV {
+		margin: 0;
+	}
+
+	.introduction {
+		background-color: red;
+	}
+	
+}
+
+:root {
+	/* Don Juan */
+  --header-color: #594f4f;
+	/* Snow Flurry */
+  --cv-background: #f6eeee;
+	/* Softer Black Color */
+	--secondary-title-color: #232b2b;
+
+}
+
+.outputCV {
+	background-color: var(--cv-background);
+  margin: 0 4% 0 auto;
+  padding: 0 0 5%;
+  border-radius: 30px;
+  width: 80%;
+	height: 700px;
+  display: grid;
+	grid-template-columns: repeat(2, 50%);
+	grid-template-rows: repeat(3, 1fr);
+	
+}
+
+p {
+	margin: 0;
+}
+
+.introduction {
+	font-size: .75rem;
+	display: grid;
+	margin: 0 5%;	
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-template-columns: 50% 50%;
+	grid-column-gap: 24px;
+	grid-row-gap: 8px;
+	align-content: center;
+}
+
+.introduction p {
+	margin: 0;
+}
+
+.fullInfo {
+	margin-top: 2%;
+	margin-left: 7%;
+}
+
+.fullName {
+	font-size: 1.2rem;
+}
+
+.profession {
+	font-size: 1.3rem;
+	font-family: base-font-bold;
+
+}
+
+.summary {
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.summaryTextArea {
+	font-size: .8rem;
+	padding: 0 4%;
+}
+
+.contactInfo {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	margin-right: 10%;
+	word-break: break-all;
+}
+
+.workHistory {
+	display: flex;
+	flex-direction: column;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.educationHistory {
+	display: flex;
+	flex-direction: column;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 3;
+	grid-row-end: 4;
+}
+
+.jobName {
+	font-size: .9rem;
+}
+
+.jobPosition {
+	font-size: .8rem;
+}
+
+.dates{ 
+	font-size: .75rem
+}
+
+.jobDescription {
+	font-size: .75rem;
+	margin-bottom: 10px;
+}
+
+.educationName {
+	font-size: .9rem;
+}
+
+.certificateName {
+	font-size: .8rem;
+}
+
+.dateAcquired {
+	font-size: .75rem
+}
+
+.educationDescription {
+	font-size: .75rem;
+	margin-bottom: 10px;
+}
