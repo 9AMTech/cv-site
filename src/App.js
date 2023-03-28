@@ -1,9 +1,9 @@
 import './App.css';
 import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import InputCV from './components/InputCV/InputCV'
-import OutputCV from './components/OutputCV/OutputCV'
-import Button from './components/Button'
+import InputCV from './components/InputCV/InputCV';
+import OutputCV from './components/OutputCV/OutputCV';
+import Toolbar from './components/Toolbar';
 
 export default function App() {
 
@@ -14,6 +14,7 @@ export default function App() {
 	const initialIntroduction = {
 		firstName: '',
 		lastName: '',
+		profession: '',
 		phoneNumber: '',
 		email: '',
 		linkedIn: '',
@@ -107,6 +108,9 @@ export default function App() {
 			case 'lastName':
 				newIntroduction.lastName = event.target.value;
 				break;
+			case 'profession':
+				newIntroduction.profession = event.target.value;
+				break;
 			case 'phoneNumber':
 				newIntroduction.phoneNumber = event.target.value;
 				break;
@@ -155,6 +159,7 @@ export default function App() {
 				throw new Error("There's something wrong with onWorkHistoryChange()");
 		}
 		setWorkHistory(newWorkHistory);
+		console.log(workHistory);
 	}
 
 	const onEducationHistoryChange = (event, toUpdate, index) => {
@@ -182,24 +187,25 @@ export default function App() {
 	//    					Function for Formatting Data
 	// ===========================================================
 
-	const formatDate = (date) => {
-		if(date === '') return;
+	const formatDate = (date, needDash) => {
+		if (date === '') return;
 		const dateParts = date.split('-');
-		return dateParts[1] + '/' + dateParts[0];
+		if (needDash === true) return dateParts[1] + '/' + dateParts[0] + ' - '
+		else return dateParts[1] + '/' + dateParts[0];
 	}
 
 	// Cool Phone Number Format Function I found online
 	let formatPhoneNumber = (str) => {
 		//Filter only numbers from the input
 		let cleaned = ('' + str).replace(/\D/g, '');
-		
+
 		//Check if the input is of correct length
 		let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-	
+
 		if (match) {
 			return '(' + match[1] + ') ' + match[2] + '-' + match[3]
 		};
-	
+
 		return null
 	};
 
@@ -262,7 +268,7 @@ export default function App() {
 	}
 
 	// ===========================================================
-	//           Functions for Resetting the Form Info
+	//           Function for Resetting the Form Info
 	// ===========================================================
 
 	const resetForm = () => {
@@ -282,7 +288,7 @@ export default function App() {
 
 
 	// ===========================================================
-	//           Functions for Generating a Sample CV
+	//           Function for Generating a Sample CV
 	// ===========================================================
 
 	const generateSampleCV = () => {
@@ -290,12 +296,13 @@ export default function App() {
 		setIntroduction({
 			firstName: 'Kyo',
 			lastName: 'Kusanagi',
+			profession: 'Martial Artist',
 			phoneNumber: '555-555-5555',
 			email: 'kkusanagi@kof.com',
-			linkedIn: 'https://www.linkedin.com/in/kkusanagi/',
-			website: 'https://www.kof.com',
+			linkedIn: 'www.linkedin.com/in/kkusanagi/',
+			website: 'www.kof.com',
 		})
-		setSummary('Aspiring teacher, tutor, software developer looking to make it in the field!')
+		setSummary('Aspiring martial artist and web developer looking to make it in the field!')
 		setWorkHistory([
 			{
 				id: 0,
@@ -303,7 +310,8 @@ export default function App() {
 				jobPosition: 'Martial Artist',
 				startDate: '2020-01',
 				endDate: '2023-03',
-				jobDescription: 'I fight people!'
+				jobDescription: 'I fight people!',
+				currentJob: true,
 			},
 			{
 				id: 1,
@@ -339,10 +347,10 @@ export default function App() {
 			}
 		]);
 		setDisplayComponent({
-				workHistory1: true,
-				workHistory2: true,
-				educationHistory1: true
-			}
+			workHistory1: true,
+			workHistory2: true,
+			educationHistory1: true
+		}
 		);
 
 		setCounters({
@@ -360,6 +368,7 @@ export default function App() {
 	const handlePrint = useReactToPrint({
 		content: () => componentRef.current,
 		onBeforePrint: () => console.log("Printing!!!"),
+		// bodyClass: 'toPrint',
 		documentTitle: introduction.firstName + ' ' + introduction.lastName + ' - Resume',
 	})
 
@@ -367,47 +376,50 @@ export default function App() {
 	return (
 		<div className="App">
 			<Header />
-			<InputCV
-				displayComponent={displayComponent}
-				setDisplayComponent={setDisplayComponent}
+			<main>
 
-				counters={counters}
-				setCounters={setCounters}
+				<Toolbar
+					generateSampleCV={generateSampleCV}
+					resetForm={resetForm}
+					handlePrint={handlePrint}
+				/>
+				<InputCV
+					displayComponent={displayComponent}
+					setDisplayComponent={setDisplayComponent}
 
-				introduction={introduction}
-				setIntroduction={setIntroduction}
-				onIntroductionChange={onIntroductionChange}
+					counters={counters}
+					setCounters={setCounters}
 
-				workHistory={workHistory}
-				onWorkHistoryChange={onWorkHistoryChange}
-				onAddWorkButtonClick={onAddWorkButtonClick}
-				onRemoveWorkButtonClick={onRemoveWorkButtonClick}
+					introduction={introduction}
+					setIntroduction={setIntroduction}
+					onIntroductionChange={onIntroductionChange}
 
-				educationHistory={educationHistory}
-				onEducationHistoryChange={onEducationHistoryChange}
-				onAddEducationButtonClick={onAddEducationButtonClick}
-				onRemoveEducationButtonClick={onRemoveEducationButtonClick}
+					workHistory={workHistory}
+					onWorkHistoryChange={onWorkHistoryChange}
+					onAddWorkButtonClick={onAddWorkButtonClick}
+					onRemoveWorkButtonClick={onRemoveWorkButtonClick}
 
-				summary={summary}
-				setSummary={setSummary}
-				onSummaryChange={onSummaryChange}
+					educationHistory={educationHistory}
+					onEducationHistoryChange={onEducationHistoryChange}
+					onAddEducationButtonClick={onAddEducationButtonClick}
+					onRemoveEducationButtonClick={onRemoveEducationButtonClick}
 
-			/>
+					summary={summary}
+					setSummary={setSummary}
+					onSummaryChange={onSummaryChange}
 
-			<Button onButtonClick={generateSampleCV} buttonText={'Sample CV'} />
-			<Button onButtonClick={resetForm} buttonText={'Reset CV'} />
-			<Button onButtonClick={handlePrint} buttonText={'Print CV'} />
-
-			<OutputCV
-				ref={componentRef}
-				displayComponent={displayComponent}
-				introduction={introduction}
-				summary={summary}
-				workHistory={workHistory}
-				educationHistory={educationHistory}
-				formatDate={formatDate}
-				formatPhoneNumber={formatPhoneNumber}
-			/>
+				/>
+				<OutputCV
+					ref={componentRef}
+					displayComponent={displayComponent}
+					introduction={introduction}
+					summary={summary}
+					workHistory={workHistory}
+					educationHistory={educationHistory}
+					formatDate={formatDate}
+					formatPhoneNumber={formatPhoneNumber}
+				/>
+			</main>
 		</div>
 	);
 }
@@ -415,7 +427,7 @@ export default function App() {
 function Header() {
 	return (
 		<header>
-			<h1>Simple-CV</h1>
+			<h1 id='title'>Simple-CV</h1>
 		</header>
 	)
 }
