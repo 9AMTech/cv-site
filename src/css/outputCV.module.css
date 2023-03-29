@@ -11,13 +11,85 @@
 
 @media print {
 	.outputCV {
-		margin: 0;
+		margin: 5% 2% !important;
+		background-color: white !important;
+		width: 100% !important; 
+		min-height: 100% !important;
+		border-radius: 0px !important;
 	}
 
 	.introduction {
-		background-color: red;
+		font-size: 1.05rem !important;
+		margin: 0 5% 10% !important;	
+		grid-column-gap: 40px !important;
+		grid-row-gap: 20px !important;
+	}
+
+	h2 {
+		font-family: base-font-bold;
+	}
+
+	.fullName {
+		font-size: 2rem !important;
+}
+
+	.profession {
+		font-size: 1.8rem !important;
+	}
+
+	.contactInfo > p {
+		margin: 2% 0 !important;
+	}
+
+	.summary {
+		font-size: 1.7rem !important;
+	}
+
+	.workHistory {
+		margin-bottom: 5% !important;
+	}
+
+	.jobName {
+		font-weight: 600 !important;
+		font-size: 1.2rem !important;
+		margin-bottom: 2px !important;
+	}
+
+	.jobPosition {
+		font-size: 1.1rem !important;
+		margin-bottom: 2px !important;
 	}
 	
+	.dates {
+		font-size: .9rem !important; 
+		margin-bottom: 1% !important;
+	}
+
+	.jobDescription {
+		font-size: 1rem !important; 
+		margin-bottom: 2% !important;
+	}
+
+	.educationName {
+		font-weight: 600 !important;
+		font-size: 1.2rem !important;
+		margin-bottom: 2px !important;
+	}
+
+	.certificateName {
+		font-size: 1.1rem !important;
+		margin-bottom: 2px !important;
+	}
+	
+	.dateAcquired {
+		font-size: .9rem !important; 
+		margin-bottom: 1% !important;
+	}
+
+	.educationDescription {
+		font-size: 1rem !important; 
+		margin-bottom: 2% !important;
+	}
 }
 
 :root {
@@ -152,4 +224,21 @@ p {
 .educationDescription {
 	font-size: .75rem;
 	margin-bottom: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+	.outputCV {
+		grid-column-start: 3;
+		grid-column-end: 4;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		top: 0;
+		right: 1.5%;
+		margin: 15vh auto;
+		height: 690px;
+		width: 43%;
+	}
 }

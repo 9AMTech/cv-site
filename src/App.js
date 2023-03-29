@@ -368,7 +368,7 @@ export default function App() {
 	const handlePrint = useReactToPrint({
 		content: () => componentRef.current,
 		onBeforePrint: () => console.log("Printing!!!"),
-		// bodyClass: 'toPrint',
+		bodyClass: 'toPrint',
 		documentTitle: introduction.firstName + ' ' + introduction.lastName + ' - Resume',
 	})
 

@@ -78,3 +78,36 @@
   border-radius: 20px;
   padding: 1% 0%;
 }
+
+@media screen and (min-width: 768px) {
+	input {
+		font-size: 1.4rem;
+	}
+	textarea {
+		font-size: 1.2rem;
+		min-height: 120px;
+	}
+	label {
+		font-size: 1.2rem;
+	}
+	.currentJobInfo {
+		padding: 0 5% 3%;
+	}
+	.currentJobInfo input {
+		width: 20px;
+		height: 20px;
+	}
+	.addRemoveButtons {
+		padding: 2% 0;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.inputCV {
+		margin-top: 15vh;
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: 1;
+		grid-row-end: 2;
+	}
+}

@@ -143,9 +143,25 @@ textarea {
 }
 
 .toPrint {
-	border: 2px solid red;
-}
+	min-height: 100% !important;
+} 
 /* Only adding this feature past mobile devices, on mobile it makes for a bad experience */
 /* .toolbar-button:hover {
 	padding-left: 200%;
 } */
+
+@media screen and (min-width: 1024px) {
+	main {
+		display: grid;
+		grid-template-columns: 7% repeat(2, 1fr);
+		grid-template-rows: 100%;
+		margin: 0 1% 0 0
+	}
+
+	.toolbar {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 1;
+		grid-row-end: 2;
+	}
+}
