@@ -4,6 +4,7 @@ import { useReactToPrint } from 'react-to-print';
 import InputCV from './components/InputCV/InputCV';
 import OutputCV from './components/OutputCV/OutputCV';
 import Toolbar from './components/Toolbar';
+import Tutorial from './components/Tutorial';
 
 export default function App() {
 
@@ -220,6 +221,14 @@ export default function App() {
 	//    			Functions for Controlling the Tutorial
 	// ===========================================================
 
+	const preventPageScroll = () => {
+		document.body.style.overflow = "hidden";
+	}
+
+	const enablePageScroll = () => {
+		document.body.style.overflow = "auto";
+	}
+
 	const nextTutorialPage = () => {
 		let newTutorialController = Object.assign({}, tutorialController);
 		newTutorialController.activePage++;
@@ -234,12 +243,15 @@ export default function App() {
 
 	const enterTutorial = () => {
 		let newTutorialController = Object.assign({}, tutorialController);
+		preventPageScroll();
+		newTutorialController.activePage = 0;
 		newTutorialController.isHidden = false;
 		setTutorialController(newTutorialController);
 	}
 
 	const exitTutorial = () => {
 		let newTutorialController = Object.assign({}, tutorialController);
+		enablePageScroll();
 		newTutorialController.isHidden = true;
 		setTutorialController(newTutorialController);
 	}
@@ -410,9 +422,15 @@ export default function App() {
 	return (
 		<div className="App">
 			<Header />
+				<Tutorial
+					tutorialController={tutorialController}
+					nextPage={nextTutorialPage}
+					previousPage={previousTutorialPage}
+					exitTutorial={exitTutorial}
+					/>
 			<main>
-
 				<Toolbar
+					enterTutorial={enterTutorial} 
 					generateSampleCV={generateSampleCV}
 					resetForm={resetForm}
 					handlePrint={handlePrint}

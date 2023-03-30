@@ -22,8 +22,8 @@
   --baby-blue: #45ada8;
   /* Dead 99 */
   --greenish-blue: #9de0ad;
-	/* Softer Black Color */
-	--secondary-title-color: #232b2b;
+  /* Softer Black Color */
+  --secondary-title-color: #232b2b;
 
   /* Viewport Variables */
   --tablet: 768px;
@@ -39,6 +39,26 @@
   /* margin-top: 1em; */
 }
 
+/* width */
+::-webkit-scrollbar {
+  margin: 2vh 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--greenish-blue);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -46,20 +66,21 @@ html {
 body {
   background-color: var(--main-bg-color);
   margin: 0;
+	overflow: hidden;
 }
 
 header {
   background-color: var(--header-color);
-	height: 10vh;
+  height: 10vh;
   /* width: 100vw; */
 }
 
 #title {
   font-family: base-font-bold;
   color: var(--cv-background);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem;
   letter-spacing: 3px;
   height: 100%;
@@ -70,7 +91,7 @@ header {
 
 input {
   font-family: base-font;
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin: 0 3% 16px;
   padding: 0 auto;
   border: 1px solid black;
@@ -79,15 +100,14 @@ input {
 }
 
 h1 {
-	font-family: base-font-bold;
+  font-family: base-font-bold;
   font-size: 1.5rem;
   padding-left: 5%;
 }
 
-
 h2 {
-	margin-top: 0;
-	font-size: 1.2rem;
+  margin-top: 0;
+  font-size: 1.2rem;
 }
 
 .toolbar {
@@ -137,59 +157,94 @@ textarea {
 }
 
 .preview-padding {
-	padding: 0 5%;
+  padding: 0 5%;
 }
 
 .place-center {
-	justify-content: center;
-	justify-self: center;
+  justify-content: center;
+  justify-self: center;
 }
 
 .toPrint {
-	min-height: 100% !important;
-} 
-/* Only adding this feature past mobile devices, on mobile it makes for a bad experience */
-/* .toolbar-button:hover {
-	padding-left: 200%;
-} */
-
-/* width */
-::-webkit-scrollbar {
-	margin: 2vh 0;
+  min-height: 100% !important;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
+.tutorial-focus {
+	position: absolute;
+  background-color: #55555559;
+  display: flex;
+	justify-content: center;
+	align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--greenish-blue); 
+.tutorial-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	border-radius: 30px;
+  background-color: white;
+  width: 400px;
+  height: 400px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+.tutorial-content {
+	margin: 0 5%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.tutorial-image {
+	margin-bottom: 5%;
+	width: 150px;
+	height: 150px;
+}
+
+.tutorial-button-svgs {
+	width: 100%;
+	height: 100%;
+}
+
+.tutorial-content p {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	margin-bottom: 5%;
+	min-height: 100px;
+}
+
+.tutorial-buttons {
+	display: flex;
+	width: 60%;
+	justify-content: space-between;
+}
+
+.tutorial-buttons section {
 }
 
 @media screen and (min-width: 1024px) {
-	main {
-		display: grid;
-		grid-template-columns: 7% repeat(2, 1fr);
-		grid-template-rows: 100%;
-		margin: 0 1% 0 0
-	}
+  main {
+    display: grid;
+    grid-template-columns: 7% repeat(2, 1fr);
+    grid-template-rows: 100%;
+    margin: 0 1% 0 0;
+  }
 
-	.toolbar {
-		margin-top: 5vh;
-		grid-column-start: 1;
-		grid-column-end: 2;
-		grid-row-start: 1;
-		grid-row-end: 2;
-	}
+  .toolbar {
+    margin-top: 5vh;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 
-	.print-preview-button {
-		display: none;
-	}
+  .print-preview-button {
+    display: none;
+  }
 }
