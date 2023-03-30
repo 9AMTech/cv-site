@@ -104,7 +104,7 @@
 
 @media screen and (min-width: 1024px) {
 	.inputCV {
-		margin-top: 15vh;
+		margin-top: 5vh;
 		grid-column-start: 2;
 		grid-column-end: 3;
 		grid-row-start: 1;

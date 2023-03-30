@@ -81,6 +81,11 @@ export default function App() {
 		educationHistory: 1,
 	}
 
+	const initialTutorialController = {
+		activePage: 0,
+		isHidden: false,
+	};
+
 	const [introduction, setIntroduction] = useState(initialIntroduction)
 
 	const [summary, setSummary] = useState(initialSummary);
@@ -92,6 +97,8 @@ export default function App() {
 	const [displayComponent, setDisplayComponent] = useState(initialDisplayComponent);
 
 	const [counters, setCounters] = useState(initialCounters)
+
+	const [tutorialController, setTutorialController] = useState(initialTutorialController);
 
 	// ===================================================
 	// ============== Helper Functions ===================
@@ -209,6 +216,33 @@ export default function App() {
 		return null
 	};
 
+	// ===========================================================
+	//    			Functions for Controlling the Tutorial
+	// ===========================================================
+
+	const nextTutorialPage = () => {
+		let newTutorialController = Object.assign({}, tutorialController);
+		newTutorialController.activePage++;
+		setTutorialController(newTutorialController);
+	}
+
+	const previousTutorialPage = () => {
+		let newTutorialController = Object.assign({}, tutorialController);
+		newTutorialController.activePage--;
+		setTutorialController(newTutorialController);
+	}
+
+	const enterTutorial = () => {
+		let newTutorialController = Object.assign({}, tutorialController);
+		newTutorialController.isHidden = false;
+		setTutorialController(newTutorialController);
+	}
+
+	const exitTutorial = () => {
+		let newTutorialController = Object.assign({}, tutorialController);
+		newTutorialController.isHidden = true;
+		setTutorialController(newTutorialController);
+	}
 	// ===========================================================
 	//    Functions for Adding and Removing Sections of the CV
 	// ===========================================================

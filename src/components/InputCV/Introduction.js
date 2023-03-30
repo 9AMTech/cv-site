@@ -14,9 +14,9 @@ export default function Introduction({ onIntroductionChange, introduction }) {
 
 			<input type="email" name='email' placeholder='E-Mail Address' value={introduction.email} onChange={(event) => onIntroductionChange(event, 'email')} />
 
-			<input type="text" name="linkedIn" placeholder='Linked-In' value={introduction.linkedIn} onChange={(event) => onIntroductionChange(event, 'linkedIn')} />
-
 			<input type="text" name="website" placeholder='Personal Site' value={introduction.website} onChange={(event) => onIntroductionChange(event, 'website')} />
+			
+			<input type="text" name="linkedIn" placeholder='Linked-In' value={introduction.linkedIn} onChange={(event) => onIntroductionChange(event, 'linkedIn')} />
 		</section>
 	)
 }

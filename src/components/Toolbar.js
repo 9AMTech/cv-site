@@ -19,7 +19,7 @@ export default function Toolbar({handlePrint, generateSampleCV, resetForm}) {
 			<a href='#summary'><Button classedAs='toolbar-button' buttonText={<img src={SummaryLogo} alt='Summary Button'/>}/></a>
 			<a href='#work-history'><Button classedAs='toolbar-button' buttonText={<img src={WorkLogo} alt='Work History Button'/>}/></a>
 			<a href='#education-history'><Button classedAs='toolbar-button' buttonText={<img src={EducationLogo} alt='Education History Button'/>}/></a>
-			<a href='#preview'><Button classedAs='toolbar-button' buttonText={<img src={PreviewLogo} alt='Preview CV Button'/>}/> </a>
+			<a href='#preview'><Button classedAs='toolbar-button print-preview-button' buttonText={<img src={PreviewLogo} alt='Preview CV Button'/>}/> </a>
 			<Button classedAs='toolbar-button print-button' buttonText={<img src={PrintLogo} alt='Print CV Button'/>} onButtonClick={handlePrint}/>
 			<Button classedAs='toolbar-button generate-sample-button' buttonText={<img src={GenerateLogo} alt='Generate Sample Button'/>} onButtonClick={generateSampleCV}/>
 			<Button classedAs='toolbar-button reset-button' buttonText={<img src={ResetLogo} alt='Reset CV Button'/>} onButtonClick={resetForm}/>

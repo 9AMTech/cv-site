@@ -102,8 +102,21 @@
 
 }
 
+/* width */
+.outputCV::-webkit-scrollbar {
+	margin: 2vh 0;
+	width: 10px;
+}
+
+/* Track */
+.outputCV::-webkit-scrollbar-track {
+  background: transparent;
+	margin: 3vh 0;
+}
+
 .outputCV {
 	background-color: var(--cv-background);
+	overflow-y: auto;
   margin: 0 4% 0 auto;
   padding: 0 0 5%;
   border-radius: 30px;
@@ -232,13 +245,12 @@ p {
 		grid-column-end: 4;
 		grid-row-start: 1;
 		grid-row-end: 2;
-		display: flex;
-		flex-direction: column;
 		position: fixed;
 		top: 0;
 		right: 1.5%;
 		margin: 15vh auto;
-		height: 690px;
+		height: 70vh;
+		padding: 6vh 0;
 		width: 43%;
 	}
 }
