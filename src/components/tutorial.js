@@ -18,7 +18,7 @@ export default function Tutorial({ tutorialController, previousPage, nextPage, e
 		{
 			image: PoshGoose,
 			altText: 'Teacher Goose with Smoke Pipe Image',
-			content: 'Hello! Welcome to Simple CV! This short tutorial will explain the icons and how the website works! Anything you type in the first CV, will show up in the tiny little template CV! Hit the next button to continue!',
+			content: 'Welcome to Simple CV! This short tutorial will explain the icons and how the website works! Anything you type in the first CV, will show up in the tiny little template CV! Hit the next button to continue!',
 		},
 		{
 			image: IntroductionLogo,
@@ -78,13 +78,13 @@ export default function Tutorial({ tutorialController, previousPage, nextPage, e
 							<p>{tutorialPages[tutorialController.activePage].content}</p>
 							<section className='tutorial-buttons'>
 								<section>
-									{tutorialController.activePage !== 0 ? <Button buttonText={<img className={'tutorial-button-svgs'} src={LeftArrow} alt='Left Arrow Signifying to go Back'/>} onButtonClick={previousPage} /> : null}
+									{tutorialController.activePage !== 0 ? <Button buttonText={<img className={'tutorial-button-svgs'} src={LeftArrow} alt='Left Arrow Signifying to go Back'/>} onButtonClick={previousPage} /> : <div className="tutorial-button-placeholder"></div>}
 								</section>
 								<section>
 									<Button buttonText={'EXIT'} onButtonClick={exitTutorial} />
 								</section>
 								<section>
-									{tutorialController.activePage !== 9 ? <Button buttonText={<img className={'tutorial-button-svgs'} src={RightArrow} alt='Right Arrow Signifying to go Back'/>} onButtonClick={nextPage} /> : null}
+									{tutorialController.activePage !== 9 ? <Button buttonText={<img className={'tutorial-button-svgs'} src={RightArrow} alt='Right Arrow Signifying to go Back'/>} onButtonClick={nextPage} /> : <div className="tutorial-button-placeholder"></div>}
 								</section>
 							</section>
 						</section>

@@ -26,3 +26,6 @@ Date Assigned 3/24
 Want to add a little tutorial splash on initial load
 	-Thinking it'll have css animations that explain how SimpleCV works
 	-Thinking about also adding a little button after if you want to resee the tutorial w/o refreshing the page
+
+Date Assigned 3/30
+Print styles broke :(
