@@ -11,16 +11,20 @@
 
 @media print {
 	.outputCV {
+		grid-template-rows: repeat(3, auto) !important;
 		margin: 5% 2% !important;
 		background-color: white !important;
 		width: 100% !important; 
+		height: 100% !important;
 		min-height: 100% !important;
 		border-radius: 0px !important;
+	
 	}
 
 	.introduction {
 		font-size: 1.05rem !important;
-		margin: 0 5% 10% !important;	
+		height: 20vh !important;
+		margin: 0 5% !important;	
 		grid-column-gap: 40px !important;
 		grid-row-gap: 20px !important;
 	}
@@ -88,7 +92,7 @@
 
 	.educationDescription {
 		font-size: 1rem !important; 
-		margin-bottom: 2% !important;
+		/* margin-bottom: 2% !important; */
 	}
 }
 
@@ -156,7 +160,7 @@ p {
 }
 
 .fullName {
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 }
 
 .profession {

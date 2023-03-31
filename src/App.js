@@ -340,23 +340,23 @@ export default function App() {
 	const generateSampleCV = () => {
 		resetForm();
 		setIntroduction({
-			firstName: 'Kyo',
-			lastName: 'Kusanagi',
-			profession: 'Martial Artist',
+			firstName: 'John',
+			lastName: 'Doe',
+			profession: 'Web Developer',
 			phoneNumber: '555-555-5555',
-			email: 'kkusanagi@kof.com',
-			linkedIn: 'www.linkedin.com/in/kkusanagi/',
-			website: 'www.kof.com',
+			email: 'coolwebdevname@web.dev',
+			linkedIn: 'www.linkedin.com/in/webdevguyman/',
+			website: 'www.dev.com',
 		})
-		setSummary('Aspiring martial artist and web developer looking to make it in the field!')
+		setSummary('Aspiring web developer looking to make it in the field!')
 		setWorkHistory([
 			{
 				id: 0,
-				jobName: 'Unmemployed',
-				jobPosition: 'Martial Artist',
+				jobName: 'FAANG Company',
+				jobPosition: 'Front-end Developer',
 				startDate: '2020-01',
 				endDate: '2023-03',
-				jobDescription: 'I fight people!',
+				jobDescription: "I work at a FAANG company! Or would it be MAANG now because Facebook turned to Meta? Who knows? I made it!",
 				currentJob: true,
 			},
 			{
@@ -365,7 +365,7 @@ export default function App() {
 				jobPosition: 'Mall Cop',
 				startDate: '2017-06',
 				endDate: '2019-12',
-				jobDescription: 'I stop kids from skating on the stairs.'
+				jobDescription: 'I stopped kids from skating on the stairs. I was really good at it'
 			},
 			{
 				id: 2,
@@ -373,7 +373,7 @@ export default function App() {
 				jobPosition: 'Bagger',
 				startDate: '2010-09',
 				endDate: '2015-05',
-				jobDescription: 'I fight the urges of eating customers groceries while bagging them.'
+				jobDescription: 'I fight the urges of eating customers groceries while bagging them. Vigorously!'
 			},
 		]);
 		setEducationHistory([
@@ -382,14 +382,14 @@ export default function App() {
 				educationName: 'Community College',
 				certificateName: 'Associates Degree',
 				dateAcquired: '2023-03',
-				educationDescription: "The martial arts didn't work out so I had to go back to school."
+				educationDescription: "I got another piece of paper here!"
 			},
 			{
 				id: 1,
-				educationName: "Monk's Temple",
-				certificateName: 'These hands',
+				educationName: "High School",
+				certificateName: 'Diploma',
 				dateAcquired: '2005-03',
-				educationDescription: 'I trained in the moutains for these hands.'
+				educationDescription: 'I got a piece of paper here!'
 			}
 		]);
 		setDisplayComponent({
@@ -421,16 +421,16 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<Header />
-				<Tutorial
-					tutorialController={tutorialController}
-					nextPage={nextTutorialPage}
-					previousPage={previousTutorialPage}
-					exitTutorial={exitTutorial}
-					/>
+			<Tutorial
+				tutorialController={tutorialController}
+				nextPage={nextTutorialPage}
+				previousPage={previousTutorialPage}
+				exitTutorial={exitTutorial}
+			/>
+				<Header />
 			<main>
 				<Toolbar
-					enterTutorial={enterTutorial} 
+					enterTutorial={enterTutorial}
 					generateSampleCV={generateSampleCV}
 					resetForm={resetForm}
 					handlePrint={handlePrint}
