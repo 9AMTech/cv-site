@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# CV-Site App
+A website that you can use to create your own CV with an interactive tutorial, made entirely in React!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Link to project:** 9amtech.github.io/cv-site/ <br>
+**Project Requirements:** https://www.theodinproject.com/lessons/node-path-javascript-cv-application#assignment
 
-## Available Scripts
+![Thumbnail for the restaurant project.](https://github.com/9AMTech/cv-site/blob/main/thumbnail.png?raw=true)
 
-In the project directory, you can run:
+## How It's Made:
 
-### `npm start`
+**Tech used:** CSS (CSS Modules, Print Styles, Webkit Scroll), React (Create-React-App, React-to-Print, useState, useRef, forwardRef)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This app was such a challenge! Since it was definitely a larger scale application my hand was forced, and I had to divy up and slice up my code into different files and chunks. It was intimidating at first but I have to say, it looked SO clean afterwards. The important components like InputCV and OutputCV got their own CSS Modules, which helped keep each respective's styles clean, and allowed for the reuse of common names like "introduction" and "summary". On the initial page load, there's an interactive tutorial that shows you all of the buttons that are there to greet you on the toolbar. Each page gives a little description of what each button does or where it'll take you. The toolbar allows for easy navigation of the InputCV. The print button was a different beast on its own. To get the user to even be able to print the page I had to find the React-to-Print package. It worked like a charm, but hooking it up made me get my hands dirty with learning about refs and forwardRefs. After wiring that up I then found out that the print page has it's own styles, and doesn't take after the styles of the component with the ref. In terms of the CSS side it was nicer to learn about being able to specifically target the print page's styles and also to be able to design individual scrollbars of anything on the screen with a scrollbar. I love front-end development. I'm learning something new every day!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Lessons Learned:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-React is amazing, components divy up code into easily managable chunks
+-CSS is amazing, modules divy up code into easily managable chunks
+-There's almost a React package for everything. I don't know how I would've tackled only printing one component without it React-to-Print
+-Programming in React is really streamlined and easy to understand. React having a rule of being Unidirectional seems like a unorthodox restriction at first, but i feel as though it really makes it so that you know and understand what way data is going at all times. It's a great concept.
+-Having a noted list of "things to do" is a great practice to pick up. It's like having a whiteboard of all your thoughts and keeps track of whats going on/what needs to be done.
