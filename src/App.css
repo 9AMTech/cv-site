@@ -64,9 +64,9 @@ html {
 }
 
 body {
-	background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color);
   margin: 0;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 header {
@@ -127,8 +127,8 @@ h2 {
 }
 
 .toolbar img {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 
 .print-button {
@@ -170,11 +170,11 @@ textarea {
 } */
 
 .tutorial-focus {
-	position: fixed;
+  position: fixed;
   background-color: #55555559;
   display: flex;
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   z-index: 10000;
@@ -184,57 +184,54 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-	border-radius: 30px;
+  border-radius: 30px;
   background-color: white;
   width: 400px;
   height: 400px;
 }
 
 .tutorial-content {
-	margin: 0 5%;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
+  margin: 0 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-
 .tutorial-image {
-	margin-bottom: 5%;
-	width: 150px;
-	height: 150px;
+  margin-bottom: 5%;
+  width: 150px;
+  height: 150px;
 }
 
 .tutorial-button-svgs {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .tutorial-content p {
-	display: flex;
-	align-items: center;
-	font-size: 1rem;
-	margin-bottom: 5%;
-	min-height: 100px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 5%;
+  min-height: 100px;
 }
 
 .tutorial-buttons {
-	display: flex;
-	width: 60%;
-	justify-content: space-between;
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
 }
 
 .tutorial-buttons > section {
-	padding: 5%;
+  padding: 5%;
 }
 
 .tutorial-buttons > section > * {
-	width: 50px;
-	height: 50px;
+  width: 50px;
+  height: 50px;
 }
-
-
 
 @media screen and (min-width: 1024px) {
   main {
@@ -250,6 +247,11 @@ textarea {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+  }
+
+  .toolbar img {
+    height: 40px;
+    width: 40px;
   }
 
   .print-preview-button {
