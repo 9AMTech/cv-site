@@ -14,8 +14,8 @@ This app was such a challenge! Since it was definitely a larger scale applicatio
 
 ## Lessons Learned:
 
--React is amazing, components divy up code into easily managable chunks
--CSS is amazing, modules divy up code into easily managable chunks
--There's almost a React package for everything. I don't know how I would've tackled only printing one component without it React-to-Print
+-React is amazing, components divy up code into easily managable chunks.
+-CSS is amazing, modules divy up code into easily managable chunks.
+-There's almost a React package for everything. I don't know how I would've tackled only printing one component without it React-to-Print.
 -Programming in React is really streamlined and easy to understand. React having a rule of being Unidirectional seems like a unorthodox restriction at first, but i feel as though it really makes it so that you know and understand what way data is going at all times. It's a great concept.
 -Having a noted list of "things to do" is a great practice to pick up. It's like having a whiteboard of all your thoughts and keeps track of whats going on/what needs to be done.
