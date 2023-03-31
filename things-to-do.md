@@ -17,12 +17,15 @@ Need to Add the Sample CV Generator Button DONE 3/25
 	-Need to add input information functionality DONE 3/25
 
 Date Assigned 3/20
-Need to do CSS
+Need to do CSS DONE 3/30
 Viewpoints
-	-On big screens both templates will appear side by side
-	-On smaller screens the templates will appear stacked ontop of each other
+	-On big screens both templates will appear side by side DONE 3/30
+	-On smaller screens the templates will appear stacked ontop of each other DONE 3/30
 
 Date Assigned 3/24
 Want to add a little tutorial splash on initial load
 	-Thinking it'll have css animations that explain how SimpleCV works
 	-Thinking about also adding a little button after if you want to resee the tutorial w/o refreshing the page
+
+Date Assigned 3/30
+Print styles broke :(

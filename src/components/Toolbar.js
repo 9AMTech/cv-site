@@ -10,11 +10,11 @@ import PrintLogo from '../css/svgs/print-cv.png';
 import GenerateLogo from '../css/svgs/sample-cv.png';
 import ResetLogo from '../css/svgs/reset-cv.png';
 
-export default function Toolbar({handlePrint, generateSampleCV, resetForm}) {
+export default function Toolbar({enterTutorial, handlePrint, generateSampleCV, resetForm}) {
 
 	return (
 		<aside className='toolbar'>
-			<Button classedAs='toolbar-button' buttonText={<img src={TutorialLogo} alt='Tutorial Button'/>}/>
+			<Button classedAs='toolbar-button' onButtonClick={enterTutorial} buttonText={<img src={TutorialLogo}  alt='Tutorial Button'/>}/>
 			<a href='#introduction'><Button classedAs='toolbar-button' buttonText={<img src={IntroductionLogo} alt='Introduction Button'/>}/></a>
 			<a href='#summary'><Button classedAs='toolbar-button' buttonText={<img src={SummaryLogo} alt='Summary Button'/>}/></a>
 			<a href='#work-history'><Button classedAs='toolbar-button' buttonText={<img src={WorkLogo} alt='Work History Button'/>}/></a>
