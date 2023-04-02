@@ -11,7 +11,7 @@ export default function EducationHistory({ educationHistory, displayComponent, f
 				<p className={OutputCSS.educationDescription}>{educationHistory[0].educationDescription}</p>
 			</section>
 
-			{displayComponent.educationHistory1 === true
+			{displayComponent.educationHistory1
 				? <section>
 					<p className={OutputCSS.educationName}>{educationHistory[1].educationName}</p>
 					<p className={OutputCSS.certificateName}>{educationHistory[1].certificateName}</p>

@@ -28,4 +28,4 @@ Want to add a little tutorial splash on initial load
 	-Thinking about also adding a little button after if you want to resee the tutorial w/o refreshing the page
 
 Date Assigned 3/30
-Print styles broke :(
+Print styles broke :( FIXED 
