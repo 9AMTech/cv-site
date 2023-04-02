@@ -1,6 +1,6 @@
-import Introduction from './Introduction.js'
-import Summary from './Summary.js'
-import WorkHistory from './WorkHistory.js'
-import EducationHistory from './EducationHistory.js'
+import Introduction from './Introduction'
+import Summary from './Summary'
+import WorkHistory from './WorkHistory'
+import EducationHistory from './EducationHistory'
 
 export {Introduction, Summary, WorkHistory, EducationHistory}

@@ -69,7 +69,7 @@ export default function Tutorial({ tutorialController, previousPage, nextPage, e
 
 	return (
 		<>
-			{tutorialController.isHidden === true
+			{tutorialController.isHidden
 				? null
 				: <section className='tutorial-focus place-center'>
 					<section className='tutorial-wrapper place-center'>
