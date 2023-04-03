@@ -15,12 +15,10 @@ export default function InputCV(props) {
   return (
     <section className={InputCSS.inputCV}>
       <Introduction
-        introduction={props.introduction}
         onIntroductionChange={props.onIntroductionChange}
       />
       <div className={InputCSS.fadedSeparator}> &nbsp;</div>
       <Summary
-        summary={props.summary}
         onSummaryChange={props.onSummaryChange}
       />
       <div className={InputCSS.fadedSeparator}> &nbsp;</div>
@@ -42,7 +40,6 @@ export default function InputCV(props) {
         {/* OLD WORKING CODE */}
 
         <WorkHistory
-          workHistory={props.workHistory}
           onWorkHistoryChange={props.onWorkHistoryChange}
           index={0}
           displayComponent={props.displayComponent}
@@ -53,7 +50,6 @@ export default function InputCV(props) {
 
         {props.displayComponent.workHistory1 ? (
           <WorkHistory
-            workHistory={props.workHistory}
             onWorkHistoryChange={props.onWorkHistoryChange}
             index={1}
             displayComponent={props.displayComponent}
@@ -65,7 +61,6 @@ export default function InputCV(props) {
 
         {props.displayComponent.workHistory2 ? (
           <WorkHistory
-            workHistory={props.workHistory}
             onWorkHistoryChange={props.onWorkHistoryChange}
             index={2}
             displayComponent={props.displayComponent}
@@ -101,7 +96,6 @@ export default function InputCV(props) {
 
       <section id="education-history" className={InputCSS.educationHistory}>
         <EducationHistory
-          educationHistory={props.educationHistory}
           onEducationHistoryChange={props.onEducationHistoryChange}
           index={0}
         />

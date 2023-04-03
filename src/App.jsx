@@ -1,132 +1,74 @@
 import "./App.css";
 import { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import { CVContext, SetCVContext } from "./Context";
 import InputCV from "./components/InputCV/InputCV";
 import OutputCV from "./components/OutputCV/OutputCV";
-import Toolbar from "./components/Toolbar";
-import Tutorial from "./components/Tutorial";
+import Toolbar from "./components/Toolbar/Toolbar";
+import Tutorial from "./components/Tutorial/Tutorial";
 
 export default function App() {
   // ===================================================
   // ==================== States =======================
   // ===================================================
 
-  // const initialCV = {
-  //   introduction: {
-  //     firstName: "",
-  //     lastName: "",
-  //     profession: "",
-  //     phoneNumber: "",
-  //     email: "",
-  //     linkedIn: "",
-  //     website: "",
-  //   },
-  //   summary: "",
-  //   workHistory: [
-  //     {
-  //       id: 0,
-  //       jobName: "",
-  //       jobPosition: "",
-  //       startDate: "",
-  //       endDate: "",
-  //       jobDescription: "",
-  //       currentJob: false,
-  //     },
-  //     {
-  //       id: 1,
-  //       jobName: "",
-  //       jobPosition: "",
-  //       startDate: "",
-  //       endDate: "",
-  //       jobDescription: "",
-  //       currentJob: false,
-  //     },
-  //     {
-  //       id: 2,
-  //       jobName: "",
-  //       jobPosition: "",
-  //       startDate: "",
-  //       endDate: "",
-  //       jobDescription: "",
-  //       currentJob: false,
-  //     },
-  //   ],
-  //   educationHistory: [
-  //     {
-  //       id: 0,
-  //       educationName: "",
-  //       certificateName: "",
-  //       dateAcquired: "",
-  //       educationDescription: "",
-  //     },
-  //     {
-  //       id: 1,
-  //       educationName: "",
-  //       certificateName: "",
-  //       dateAcquired: "",
-  //       educationDescription: "",
-  //     },
-  //   ],
-  // };
-
-  const initialIntroduction = {
-    firstName: "",
-    lastName: "",
-    profession: "",
-    phoneNumber: "",
-    email: "",
-    linkedIn: "",
-    website: "",
+  const initialCV = {
+    introduction: {
+      firstName: "",
+      lastName: "",
+      profession: "",
+      phoneNumber: "",
+      email: "",
+      linkedIn: "",
+      website: "",
+    },
+    summary: "",
+    workHistory: [
+      {
+        id: 0,
+        jobName: "",
+        jobPosition: "",
+        startDate: "",
+        endDate: "",
+        jobDescription: "",
+        currentJob: false,
+      },
+      {
+        id: 1,
+        jobName: "",
+        jobPosition: "",
+        startDate: "",
+        endDate: "",
+        jobDescription: "",
+        currentJob: false,
+      },
+      {
+        id: 2,
+        jobName: "",
+        jobPosition: "",
+        startDate: "",
+        endDate: "",
+        jobDescription: "",
+        currentJob: false,
+      },
+    ],
+    educationHistory: [
+      {
+        id: 0,
+        educationName: "",
+        certificateName: "",
+        dateAcquired: "",
+        educationDescription: "",
+      },
+      {
+        id: 1,
+        educationName: "",
+        certificateName: "",
+        dateAcquired: "",
+        educationDescription: "",
+      },
+    ],
   };
-
-  const initialSummary = "";
-
-  const initialWorkHistory = [
-    {
-      id: 0,
-      jobName: "",
-      jobPosition: "",
-      startDate: "",
-      endDate: "",
-      jobDescription: "",
-      currentJob: false,
-    },
-    {
-      id: 1,
-      jobName: "",
-      jobPosition: "",
-      startDate: "",
-      endDate: "",
-      jobDescription: "",
-      currentJob: false,
-    },
-    {
-      id: 2,
-      jobName: "",
-      jobPosition: "",
-      startDate: "",
-      endDate: "",
-      jobDescription: "",
-      currentJob: false,
-    },
-  ];
-
-  const initialEducationHistory = [
-    {
-      id: 0,
-      educationName: "",
-      certificateName: "",
-      dateAcquired: "",
-      educationDescription: "",
-    },
-    {
-      id: 1,
-      educationName: "",
-      certificateName: "",
-      dateAcquired: "",
-      educationDescription: "",
-    },
-  ];
 
   const initialDisplayComponent = [
     {
@@ -146,15 +88,7 @@ export default function App() {
     isHidden: false,
   };
 
-  const [introduction, setIntroduction] = useState(initialIntroduction);
-
-  const [summary, setSummary] = useState(initialSummary);
-
-  const [workHistory, setWorkHistory] = useState(initialWorkHistory);
-
-  const [educationHistory, setEducationHistory] = useState(
-    initialEducationHistory
-  );
+  const [cv, setCV] = useState(initialCV);
 
   const [displayComponent, setDisplayComponent] = useState(
     initialDisplayComponent
@@ -166,100 +100,6 @@ export default function App() {
     initialTutorialController
   );
 
-  // ===================================================
-  // ============== Helper Functions ===================
-  // ===================================================
-
-  const onIntroductionChange = (event) => {
-    let newIntroduction = Object.assign({}, introduction);
-    newIntroduction[event.target.name] = event.target.value;
-    setIntroduction(newIntroduction);
-  };
-
-  const onSummaryChange = (event) => {
-    setSummary(event.target.value);
-  };
-
-  const onWorkHistoryChange = (event, index) => {
-    let newWorkHistory = Object.assign({}, workHistory);
-    if (event.target.name === "currentJob") {
-      newWorkHistory[index][event.target.name] = event.target.checked;
-    } else {
-      newWorkHistory[index][event.target.name] = event.target.value;
-    }
-    setWorkHistory(newWorkHistory);
-  };
-
-  const onEducationHistoryChange = (event, index) => {
-    let newEducation = Object.assign({}, educationHistory);
-    newEducation[index][event.target.name] = event.target.value;
-    setEducationHistory(newEducation);
-  };
-
-  // ===========================================================
-  //    					Function for Formatting Data
-  // ===========================================================
-
-  const formatDate = (date, needDash) => {
-    if (date === "") return;
-    const dateParts = date.split("-");
-    if (needDash) return dateParts[1] + "/" + dateParts[0] + " - ";
-    else return dateParts[1] + "/" + dateParts[0];
-  };
-
-  // Cool Phone Number Format Function I found online
-  let formatPhoneNumber = (str) => {
-    //Filter only numbers from the input
-    let cleaned = ("" + str).replace(/\D/g, "");
-
-    //Check if the input is of correct length
-    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-
-    if (match) {
-      return "(" + match[1] + ") " + match[2] + "-" + match[3];
-    }
-
-    return null;
-  };
-
-  // ===========================================================
-  //    			Functions for Controlling the Tutorial
-  // ===========================================================
-
-  const preventPageScroll = () => {
-    document.body.style.overflow = "hidden";
-  };
-
-  const enablePageScroll = () => {
-    document.body.style.overflow = "auto";
-  };
-
-  const nextTutorialPage = () => {
-    let newTutorialController = Object.assign({}, tutorialController);
-    newTutorialController.activePage++;
-    setTutorialController(newTutorialController);
-  };
-
-  const previousTutorialPage = () => {
-    let newTutorialController = Object.assign({}, tutorialController);
-    newTutorialController.activePage--;
-    setTutorialController(newTutorialController);
-  };
-
-  const enterTutorial = () => {
-    let newTutorialController = Object.assign({}, tutorialController);
-    preventPageScroll();
-    newTutorialController.activePage = 0;
-    newTutorialController.isHidden = false;
-    setTutorialController(newTutorialController);
-  };
-
-  const exitTutorial = () => {
-    let newTutorialController = Object.assign({}, tutorialController);
-    enablePageScroll();
-    newTutorialController.isHidden = true;
-    setTutorialController(newTutorialController);
-  };
   // ===========================================================
   //    Functions for Adding and Removing Sections of the CV
   // ===========================================================
@@ -321,16 +161,10 @@ export default function App() {
   // ===========================================================
 
   const resetForm = () => {
-    let newIntroduction = Object.assign({}, initialIntroduction);
-    let newSummary = initialSummary;
-    let newWorkHistory = Object.assign({}, initialWorkHistory);
-    let newEducationHistory = Object.assign({}, initialEducationHistory);
+    let newCV = Object.assign({}, initialCV);
     let newDisplayComponent = Object.assign({}, initialDisplayComponent);
     let newCounters = Object.assign({}, initialCounters);
-    setIntroduction(newIntroduction);
-    setSummary(newSummary);
-    setWorkHistory(newWorkHistory);
-    setEducationHistory(newEducationHistory);
+    setCV(newCV);
     setDisplayComponent(newDisplayComponent);
     setCounters(newCounters);
   };
@@ -341,68 +175,69 @@ export default function App() {
 
   const generateSampleCV = () => {
     resetForm();
-    setIntroduction({
-      firstName: "John",
-      lastName: "Doe",
-      profession: "Web Developer",
-      phoneNumber: "555-555-5555",
-      email: "coolwebdevname@web.dev",
-      linkedIn: "www.linkedin.com/in/webdevguyman/",
-      website: "www.dev.com",
+    setCV({
+      introduction: {
+        firstName: "John",
+        lastName: "Doe",
+        profession: "Web Developer",
+        phoneNumber: "555-555-5555",
+        email: "coolwebdevname@web.dev",
+        linkedIn: "www.linkedin.com/in/webdevguyman/",
+        website: "www.dev.com",
+      },
+      summary: "Aspiring web developer looking to make it in the field!",
+      workHistory: [
+        {
+          id: 0,
+          jobName: "FAANG Company",
+          jobPosition: "Front-end Developer",
+          startDate: "2020-01",
+          endDate: "2023-03",
+          jobDescription:
+            "I work at a FAANG company! Or would it be MAANG now because Facebook turned to Meta? Who knows? I made it!",
+          currentJob: true,
+        },
+        {
+          id: 1,
+          jobName: "Florida Man Mall",
+          jobPosition: "Mall Cop",
+          startDate: "2017-06",
+          endDate: "2019-12",
+          jobDescription:
+            "I stopped kids from skating on the stairs. I was really good at it",
+        },
+        {
+          id: 2,
+          jobName: "Generic Grocery Store Name",
+          jobPosition: "Bagger",
+          startDate: "2010-09",
+          endDate: "2015-05",
+          jobDescription:
+            "I fight the urges of eating customers groceries while bagging them. Vigorously!",
+        },
+      ],
+      educationHistory: [
+        {
+          id: 0,
+          educationName: "Community College",
+          certificateName: "Associates Degree",
+          dateAcquired: "2023-03",
+          educationDescription: "I got another piece of paper here!",
+        },
+        {
+          id: 1,
+          educationName: "High School",
+          certificateName: "Diploma",
+          dateAcquired: "2005-03",
+          educationDescription: "I got a piece of paper here!",
+        },
+      ],
     });
-    setSummary("Aspiring web developer looking to make it in the field!");
-    setWorkHistory([
-      {
-        id: 0,
-        jobName: "FAANG Company",
-        jobPosition: "Front-end Developer",
-        startDate: "2020-01",
-        endDate: "2023-03",
-        jobDescription:
-          "I work at a FAANG company! Or would it be MAANG now because Facebook turned to Meta? Who knows? I made it!",
-        currentJob: true,
-      },
-      {
-        id: 1,
-        jobName: "Florida Man Mall",
-        jobPosition: "Mall Cop",
-        startDate: "2017-06",
-        endDate: "2019-12",
-        jobDescription:
-          "I stopped kids from skating on the stairs. I was really good at it",
-      },
-      {
-        id: 2,
-        jobName: "Generic Grocery Store Name",
-        jobPosition: "Bagger",
-        startDate: "2010-09",
-        endDate: "2015-05",
-        jobDescription:
-          "I fight the urges of eating customers groceries while bagging them. Vigorously!",
-      },
-    ]);
-    setEducationHistory([
-      {
-        id: 0,
-        educationName: "Community College",
-        certificateName: "Associates Degree",
-        dateAcquired: "2023-03",
-        educationDescription: "I got another piece of paper here!",
-      },
-      {
-        id: 1,
-        educationName: "High School",
-        certificateName: "Diploma",
-        dateAcquired: "2005-03",
-        educationDescription: "I got a piece of paper here!",
-      },
-    ]);
     setDisplayComponent({
       workHistory1: true,
       workHistory2: true,
       educationHistory1: true,
     });
-
     setCounters({
       workHistory: 3,
       educationHistory: 2,
@@ -420,55 +255,40 @@ export default function App() {
     onBeforePrint: () => console.log("Printing!!!"),
     bodyClass: "toPrint",
     documentTitle:
-      introduction.firstName + " " + introduction.lastName + " - Resume",
+      cv.introduction.firstName + " " + cv.introduction.lastName + " - Resume",
   });
 
   return (
     <div className="App">
       <Tutorial
         tutorialController={tutorialController}
-        nextPage={nextTutorialPage}
-        previousPage={previousTutorialPage}
-        exitTutorial={exitTutorial}
+				setTutorialController={setTutorialController}
       />
       <Header />
       <main>
         <Toolbar
-          enterTutorial={enterTutorial}
+          tutorialController={tutorialController}
+          setTutorialController={setTutorialController}
           generateSampleCV={generateSampleCV}
           resetForm={resetForm}
           handlePrint={handlePrint}
         />
-        <InputCV
-          displayComponent={displayComponent}
-          setDisplayComponent={setDisplayComponent}
-          counters={counters}
-          setCounters={setCounters}
-          introduction={introduction}
-          setIntroduction={setIntroduction}
-          onIntroductionChange={onIntroductionChange}
-          workHistory={workHistory}
-          onWorkHistoryChange={onWorkHistoryChange}
-          onAddWorkButtonClick={onAddWorkButtonClick}
-          onRemoveWorkButtonClick={onRemoveWorkButtonClick}
-          educationHistory={educationHistory}
-          onEducationHistoryChange={onEducationHistoryChange}
-          onAddEducationButtonClick={onAddEducationButtonClick}
-          onRemoveEducationButtonClick={onRemoveEducationButtonClick}
-          summary={summary}
-          setSummary={setSummary}
-          onSummaryChange={onSummaryChange}
-        />
-        <OutputCV
-          ref={componentRef}
-          displayComponent={displayComponent}
-          introduction={introduction}
-          summary={summary}
-          workHistory={workHistory}
-          educationHistory={educationHistory}
-          formatDate={formatDate}
-          formatPhoneNumber={formatPhoneNumber}
-        />
+        <CVContext.Provider value={cv}>
+          <SetCVContext.Provider value={setCV}>
+            <InputCV
+              displayComponent={displayComponent}
+              setDisplayComponent={setDisplayComponent}
+              counters={counters}
+              setCounters={setCounters}
+              // onIntroductionChange={onIntroductionChange}
+              onAddWorkButtonClick={onAddWorkButtonClick}
+              onRemoveWorkButtonClick={onRemoveWorkButtonClick}
+              onAddEducationButtonClick={onAddEducationButtonClick}
+              onRemoveEducationButtonClick={onRemoveEducationButtonClick}
+            />
+          </SetCVContext.Provider>
+          <OutputCV ref={componentRef} displayComponent={displayComponent} />
+        </CVContext.Provider>
       </main>
     </div>
   );
