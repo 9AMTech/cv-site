@@ -1,9 +1,13 @@
 import { createContext } from 'react';
-// import {initialCV} from './App.jsx'
 
 const CVContext = createContext();
 const SetCVContext = createContext();
+const DisplayContext = createContext();
+const CounterContext = createContext();
+
 export {
 	CVContext,
-	SetCVContext
+	SetCVContext,
+	DisplayContext,
+	CounterContext
 };

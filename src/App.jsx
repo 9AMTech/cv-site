@@ -70,91 +70,13 @@ export default function App() {
     ],
   };
 
-  const initialDisplayComponent = [
-    {
-      workHistory1: false,
-      workHistory2: false,
-      educationHistory1: false,
-    },
-  ];
-
-  const initialCounters = {
-    workHistory: 1,
-    educationHistory: 1,
-  };
-
-  const initialTutorialController = {
-    activePage: 0,
-    isHidden: false,
-  };
+  const initialIsTutorialHidden = false;
 
   const [cv, setCV] = useState(initialCV);
 
-  const [displayComponent, setDisplayComponent] = useState(
-    initialDisplayComponent
+  const [isTutorialHidden, setIsTutorialHidden] = useState(
+    initialIsTutorialHidden
   );
-
-  const [counters, setCounters] = useState(initialCounters);
-
-  const [tutorialController, setTutorialController] = useState(
-    initialTutorialController
-  );
-
-  // ===========================================================
-  //    Functions for Adding and Removing Sections of the CV
-  // ===========================================================
-
-  const onAddWorkButtonClick = () => {
-    let newDisplayComponent = Object.assign({}, displayComponent);
-    let newCounter = Object.assign({}, counters);
-
-    newCounter.workHistory++;
-    if (newCounter.workHistory === 2) {
-      newDisplayComponent.workHistory1 = true;
-    } else if (newCounter.workHistory === 3) {
-      newDisplayComponent.workHistory2 = true;
-    }
-    setDisplayComponent(newDisplayComponent);
-    setCounters(newCounter);
-  };
-
-  const onRemoveWorkButtonClick = () => {
-    let newDisplayComponent = Object.assign({}, displayComponent);
-    let newCounter = Object.assign({}, counters);
-
-    if (newCounter.workHistory === 2) {
-      newDisplayComponent.workHistory1 = false;
-    } else if (newCounter.workHistory === 3) {
-      newDisplayComponent.workHistory2 = false;
-    }
-    newCounter.workHistory--;
-    setDisplayComponent(newDisplayComponent);
-    setCounters(newCounter);
-  };
-
-  const onAddEducationButtonClick = () => {
-    let newDisplayComponent = Object.assign({}, displayComponent);
-    let newCounter = Object.assign({}, counters);
-
-    newCounter.educationHistory++;
-    if (newCounter.educationHistory === 2) {
-      newDisplayComponent.educationHistory1 = true;
-    }
-    setDisplayComponent(newDisplayComponent);
-    setCounters(newCounter);
-  };
-
-  const onRemoveEducationButtonClick = () => {
-    let newDisplayComponent = Object.assign({}, displayComponent);
-    let newCounter = Object.assign({}, counters);
-
-    if (newCounter.educationHistory === 2) {
-      newDisplayComponent.educationHistory1 = false;
-    }
-    newCounter.educationHistory--;
-    setDisplayComponent(newDisplayComponent);
-    setCounters(newCounter);
-  };
 
   // ===========================================================
   //           Function for Resetting the Form Info
@@ -162,11 +84,7 @@ export default function App() {
 
   const resetForm = () => {
     let newCV = Object.assign({}, initialCV);
-    let newDisplayComponent = Object.assign({}, initialDisplayComponent);
-    let newCounters = Object.assign({}, initialCounters);
     setCV(newCV);
-    setDisplayComponent(newDisplayComponent);
-    setCounters(newCounters);
   };
 
   // ===========================================================
@@ -233,15 +151,6 @@ export default function App() {
         },
       ],
     });
-    setDisplayComponent({
-      workHistory1: true,
-      workHistory2: true,
-      educationHistory1: true,
-    });
-    setCounters({
-      workHistory: 3,
-      educationHistory: 2,
-    });
   };
 
   // ===========================================================
@@ -261,14 +170,14 @@ export default function App() {
   return (
     <div className="App">
       <Tutorial
-        tutorialController={tutorialController}
-				setTutorialController={setTutorialController}
+        isTutorialHidden={isTutorialHidden}
+        setIsTutorialHidden={setIsTutorialHidden}
       />
       <Header />
       <main>
         <Toolbar
-          tutorialController={tutorialController}
-          setTutorialController={setTutorialController}
+          isTutorialHidden={isTutorialHidden}
+          setIsTutorialHidden={setIsTutorialHidden}
           generateSampleCV={generateSampleCV}
           resetForm={resetForm}
           handlePrint={handlePrint}
@@ -276,18 +185,10 @@ export default function App() {
         <CVContext.Provider value={cv}>
           <SetCVContext.Provider value={setCV}>
             <InputCV
-              displayComponent={displayComponent}
-              setDisplayComponent={setDisplayComponent}
-              counters={counters}
-              setCounters={setCounters}
-              // onIntroductionChange={onIntroductionChange}
-              onAddWorkButtonClick={onAddWorkButtonClick}
-              onRemoveWorkButtonClick={onRemoveWorkButtonClick}
-              onAddEducationButtonClick={onAddEducationButtonClick}
-              onRemoveEducationButtonClick={onRemoveEducationButtonClick}
+            // onIntroductionChange={onIntroductionChange}
             />
           </SetCVContext.Provider>
-          <OutputCV ref={componentRef} displayComponent={displayComponent} />
+          <OutputCV ref={componentRef} />
         </CVContext.Provider>
       </main>
     </div>

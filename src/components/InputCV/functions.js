@@ -26,6 +26,7 @@ const onEducationHistoryChange = (event, index, oldCV) => {
 	return newCV;
 };
 
+
 export {
 	onIntroductionChange,
 	onSummaryChange,

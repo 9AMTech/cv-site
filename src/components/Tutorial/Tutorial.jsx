@@ -13,15 +13,32 @@ import CoolEmoji from "../../css/images/cool-emoji.png";
 import LeftArrow from "../../css/svgs/left-arrow.png";
 import RightArrow from "../../css/svgs/right-arrow.png";
 import {
-  nextTutorialPage,
-  previousTutorialPage,
-  exitTutorial,
+  // nextTutorialPage,
+  // previousTutorialPage,
+  enablePageScroll,
+  // exitTutorial,
 } from "./functions";
+import { useState } from "react";
 
-export default function Tutorial({
-  tutorialController,
-  setTutorialController,
-}) {
+export default function Tutorial({ isTutorialHidden, setIsTutorialHidden }) {
+  const [activePage, setActivePage] = useState(0);
+
+  const exitTutorial = () => {
+    enablePageScroll();
+    setActivePage(0);
+    setIsTutorialHidden(true);
+  };
+
+  const nextTutorialPage = () => {
+    let newPage = activePage + 1;
+    setActivePage(newPage);
+  };
+
+  const previousTutorialPage = () => {
+    let newPage = activePage - 1;
+    setActivePage(newPage);
+  };
+
   const tutorialPages = [
     {
       image: PoshGoose,
@@ -87,19 +104,19 @@ export default function Tutorial({
 
   return (
     <>
-      {tutorialController.isHidden ? null : (
+      {isTutorialHidden ? null : (
         <section className="tutorial-focus place-center">
           <section className="tutorial-wrapper place-center">
             <section className="tutorial-content place-center">
               <img
                 className="tutorial-image"
-                src={tutorialPages[tutorialController.activePage].image}
-                alt={tutorialPages[tutorialController.activePage].altText}
+                src={tutorialPages[activePage].image}
+                alt={tutorialPages[activePage].altText}
               />
-              <p>{tutorialPages[tutorialController.activePage].content}</p>
+              <p>{tutorialPages[activePage].content}</p>
               <section className="tutorial-buttons">
                 <section>
-                  {tutorialController.activePage !== 0 ? (
+                  {activePage !== 0 ? (
                     <Button
                       buttonText={
                         <img
@@ -108,26 +125,17 @@ export default function Tutorial({
                           alt="Left Arrow Signifying to go Back"
                         />
                       }
-                      onButtonClick={tutorialController =>
-                        setTutorialController(
-                          previousTutorialPage(tutorialController)
-                        )
-                      }
+                      onButtonClick={previousTutorialPage}
                     />
                   ) : (
                     <div className="tutorial-button-placeholder"></div>
                   )}
                 </section>
                 <section>
-                  <Button
-                    buttonText={"EXIT"}
-                    onButtonClick={tutorialController =>
-                      setTutorialController(exitTutorial(tutorialController))
-                    }
-                  />
+                  <Button buttonText={"EXIT"} onButtonClick={exitTutorial} />
                 </section>
                 <section>
-                  {tutorialController.activePage !== 9 ? (
+                  {activePage !== 9 ? (
                     <Button
                       buttonText={
                         <img
@@ -136,11 +144,7 @@ export default function Tutorial({
                           alt="Right Arrow Signifying to go Back"
                         />
                       }
-                      onButtonClick={tutorialController => 
-                        setTutorialController(
-                          nextTutorialPage(tutorialController)
-                        )
-                      }
+                      onButtonClick={nextTutorialPage}
                     />
                   ) : (
                     <div className="tutorial-button-placeholder"></div>

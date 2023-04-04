@@ -11,5 +11,5 @@ const enterTutorial = (oldController) => {
 };
 
 export {
-	enterTutorial
+	// enterTutorial
 }

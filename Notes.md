@@ -1,0 +1,1 @@
+1. I was able to take most of the criticisms and actually revise my code to work better.

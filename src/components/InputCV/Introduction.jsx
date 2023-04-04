@@ -6,8 +6,8 @@ import { CVContext, SetCVContext } from "../../Context";
 export default function Introduction() {
 	const cv = useContext(CVContext);
 	const setCV = useContext(SetCVContext);
-
-  const inputs = [
+	
+	const inputs = [
     {
       type: "text",
       name: "firstName",

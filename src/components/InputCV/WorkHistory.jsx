@@ -7,6 +7,7 @@ export default function WorkHistory({ index }) {
   const cv = useContext(CVContext);
   const setCV = useContext(SetCVContext);
 
+
   return (
     <>
       {index === 0 ? <h1>Work History</h1> : null}

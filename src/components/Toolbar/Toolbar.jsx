@@ -9,20 +9,24 @@ import PreviewLogo from "../../css/svgs/preview.png";
 import PrintLogo from "../../css/svgs/print-cv.png";
 import GenerateLogo from "../../css/svgs/sample-cv.png";
 import ResetLogo from "../../css/svgs/reset-cv.png";
-import {enterTutorial} from './functions'
 
 export default function Toolbar({
-	tutorialController,
-	setTutorialController,
+	isTutorialHidden,
+	setIsTutorialHidden,
   handlePrint,
   generateSampleCV,
   resetForm,
 }) {
+
+	const enterTutorial = () => {
+		setIsTutorialHidden(false);
+	}
+
   return (
     <aside className="toolbar">
       <Button
         classedAs="toolbar-button"
-        onButtonClick={tutorialController => setTutorialController(enterTutorial(tutorialController))}
+        onButtonClick={enterTutorial}
         buttonText={<img src={TutorialLogo} alt="Tutorial Button" />}
       />
       <a href="#introduction">
