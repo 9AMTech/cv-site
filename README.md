@@ -8,7 +8,7 @@ A website that you can use to create your own CV with an interactive tutorial, m
 
 ## How It's Made:
 
-**Tech used:** CSS (CSS Modules, Print Styles, Webkit Scroll), React (Create-React-App, React-to-Print, useState, useRef, forwardRef)
+**Tech used:** CSS (CSS Modules, Print Styles, Webkit Scroll), React (Create-React-App, React-to-Print, useState, useContext, useRef, forwardRef)
 
 This app was such a challenge! Since it was definitely a larger scale application my hand was forced, and I had to divy up and slice up my code into different files and chunks. It was intimidating at first but I have to say, it looked SO clean afterwards. The important components like InputCV and OutputCV got their own CSS Modules, which helped keep each respective's styles clean, and allowed for the reuse of common names like "introduction" and "summary". On the initial page load, there's an interactive tutorial that shows you all of the buttons that are there to greet you on the toolbar. Each page gives a little description of what each button does or where it'll take you. The toolbar allows for easy navigation of the InputCV. <br/>
 
@@ -18,6 +18,7 @@ The print button was a different beast on its own. To get the user to even be ab
 
 -React is amazing, components divy up code into easily managable chunks. <br/>
 -CSS is amazing, modules divy up code into easily managable chunks. <br/>
+-It's very easy to get carried away with bad design. Refactoring large parts of this project taught me that. <br/>
 -There's almost a React package for everything. I don't know how I would've tackled only printing one component without it React-to-Print. <br/>
 -Programming in React is really streamlined and easy to understand. React having a rule of being Unidirectional seems like a unorthodox restriction at first, but i feel as though it really makes it so that you know and understand what way data is going at all times. It's a great concept. <br/>
 -Having a noted list of "things to do" is a great practice to pick up. It's like having a whiteboard of all your thoughts and keeps track of whats going on/what needs to be done.

@@ -6,7 +6,7 @@ Line lengths are cringe
 every component should
 	- Files should end in JSX DONE
 	- have it's own file Partially DONE
-	- their helpers should be grouped by domain in their own files
+	- their helpers should be grouped by domain in their own files DONE
 
 === true isn't needed DONE
 	So this would be a case of {someVar ?
