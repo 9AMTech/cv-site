@@ -13,7 +13,7 @@ every component should
 	or {!someVar ?
 	YES MF
 
-Inputs can be generated in a loop to avoid repetition 
+Inputs can be generated in a loop to avoid repetition partially done?
 		EXAMPLE
 		const inputs = [ { type: 'text', name: 'firstName', ... }, ... ];
 

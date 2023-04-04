@@ -1,10 +1,13 @@
 import InputCSS from "../../css/inputCV.module.css";
+import { useContext } from "react";
+import { CVContext, SetCVContext } from "../../Context";
+import { onWorkHistoryChange } from "./functions";
 
-export default function WorkHistory({
-  workHistory,
-  onWorkHistoryChange,
-  index,
-}) {
+export default function WorkHistory({ index }) {
+  const cv = useContext(CVContext);
+  const setCV = useContext(SetCVContext);
+
+
   return (
     <>
       {index === 0 ? <h1>Work History</h1> : null}
@@ -15,7 +18,7 @@ export default function WorkHistory({
         <input
           type="checkbox"
           name="currentJob"
-          onChange={(event) => onWorkHistoryChange(event, index)}
+          onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
         />
       </section>
 
@@ -23,23 +26,23 @@ export default function WorkHistory({
         type="text"
         name="jobName"
         placeholder="Job Name"
-        value={workHistory[index].jobName}
-        onChange={(event) => onWorkHistoryChange(event, index)}
+        value={cv.workHistory[index].jobName}
+        onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
       />
 
       <input
         type="text"
         name="jobPosition"
         placeholder="Job Position"
-        value={workHistory[index].jobPosition}
-        onChange={(event) => onWorkHistoryChange(event, index)}
+        value={cv.workHistory[index].jobPosition}
+        onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
       />
 
       <textarea
         name="jobDescription"
         placeholder="List job description or duties here"
-        value={workHistory[index].jobDescription}
-        onChange={(event) => onWorkHistoryChange(event, index)}
+        value={cv.workHistory[index].jobDescription}
+        onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
       />
 
       <section className={InputCSS.dates}>
@@ -47,18 +50,18 @@ export default function WorkHistory({
         <input
           type="month"
           name="startDate"
-          value={workHistory[index].startDate}
-          onChange={(event) => onWorkHistoryChange(event, index)}
+          value={cv.workHistory[index].startDate}
+          onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
         />
 
-        {workHistory[index].currentJob ? null : (
+        {cv.workHistory[index].currentJob ? null : (
           <>
             <label htmlFor="endingDate">End Date :</label>
             <input
               type="month"
               name="endDate"
-              value={workHistory[index].endDate}
-              onChange={(event) => onWorkHistoryChange(event, index)}
+              value={cv.workHistory[index].endDate}
+              onChange={(event) => setCV(onWorkHistoryChange(event, index, cv))}
             />
           </>
         )}

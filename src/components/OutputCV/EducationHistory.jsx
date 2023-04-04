@@ -1,27 +1,45 @@
-import OutputCSS from '../../css/outputCV.module.css';
+import OutputCSS from "../../css/outputCV.module.css";
+import { formatDate } from "./functions";
+import { useContext } from "react";
+import { CVContext } from "../../Context";
 
-export default function EducationHistory({ educationHistory, displayComponent, formatDate }) {
-	return (
-		<section className={OutputCSS.educationHistory + ' preview-padding'}>
-			<h2>Education</h2>
-			<section>
-				<p className={OutputCSS.educationName}>{educationHistory[0].educationName}</p>
-				<p className={OutputCSS.certificateName}>{educationHistory[0].certificateName}</p>
-				<p className={OutputCSS.dateAcquired}>{formatDate(educationHistory[0].dateAcquired, false)}</p>
-				<p className={OutputCSS.educationDescription}>{educationHistory[0].educationDescription}</p>
-			</section>
+export default function EducationHistory({ displayComponent }) {
+  const cv = useContext(CVContext);
 
-			{displayComponent.educationHistory1
-				? <section>
-					<p className={OutputCSS.educationName}>{educationHistory[1].educationName}</p>
-					<p className={OutputCSS.certificateName}>{educationHistory[1].certificateName}</p>
-					<p className={OutputCSS.dateAcquired}>{formatDate(educationHistory[1].dateAcquired, false)}</p>
-					<p className={OutputCSS.educationDescription}>{educationHistory[1].educationDescription}</p>
-				</section>
-				: null
-			}
+  const outputs = [
+    {
+      educationName: "educationName",
+      certificateName: "certificateName",
+      dateAcquired: "dateAcquired",
+      educationDescription: "educationDescription",
+    },
+		{
+      educationName: "educationName",
+      certificateName: "certificateName",
+      dateAcquired: "dateAcquired",
+      educationDescription: "educationDescription",
+    },
+  ];
 
-		</section>
+  return (
+    <section className={OutputCSS.educationHistory + " preview-padding"}>
+      <h2>Education</h2>
 
-	)
-}
+        {outputs.map((output, index) => (
+				<section>
+            <p className={OutputCSS[output.educationName]}>
+              {cv.educationHistory[index][output.educationName]}
+            </p>
+            <p className={OutputCSS[output.certificateName]}>
+              {cv.educationHistory[index][output.certificateName]}
+            </p>
+            <p className={OutputCSS[output.dateAcquired]}>
+              {formatDate(cv.educationHistory[index][output.dateAcquired], false)}
+            </p>
+            <p className={OutputCSS[output.educationName]}>
+              {cv.educationHistory[index][output.educationDescription]}
+            </p>
+          </section>
+        ))}
+    </section>
+)};

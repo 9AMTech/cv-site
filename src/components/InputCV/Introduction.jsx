@@ -1,7 +1,13 @@
 import InputCSS from "../../css/inputCV.module.css";
+import { onIntroductionChange } from './functions';
+import { useContext } from "react";
+import { CVContext, SetCVContext } from "../../Context";
 
-export default function Introduction({ onIntroductionChange, introduction }) {
-  const inputs = [
+export default function Introduction() {
+	const cv = useContext(CVContext);
+	const setCV = useContext(SetCVContext);
+	
+	const inputs = [
     {
       type: "text",
       name: "firstName",
@@ -51,15 +57,15 @@ export default function Introduction({ onIntroductionChange, introduction }) {
       <h1>Introduction</h1>
 			{ inputs.map(input => 
 				<input 
-					type={input.type} 
-					name={input.name}
-					placeholder={input.text}
-					maxLength={input.length}
-					value={introduction[input.name]}
-					onChange={(event) => onIntroductionChange(event)}
+				type={input.type} 
+				name={input.name}
+				placeholder={input.text}
+				maxLength={input.length}
+				value={cv.introduction[input.name]}
+				onChange={(event) => setCV(onIntroductionChange(event, cv))}
 				/>
-			)
-
+				)
+				
 			}
     </section>
   );
